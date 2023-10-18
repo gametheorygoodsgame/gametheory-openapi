@@ -42,6 +42,7 @@ jobs:
           cd generated-code
           npm init -y
           npm install
+          npm login --registry=https://npm.pkg.github.com --username=eikermannlfh password=${{secrets.NODE_AUTH_TOKEN}}
           npm publish
         env:
           NODE_AUTH_TOKEN: ${{secrets.NODE_AUTH_TOKEN}}
