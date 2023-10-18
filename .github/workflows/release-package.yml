@@ -40,6 +40,8 @@ jobs:
           npm init -y
           npm install
           npm publish
+        env:
+          NODE_AUTH_TOKEN: ${{secrets.GITHUB_TOKEN}}
         continue-on-error: false
       - name: Show Generated Code Contents
         run: ls -l
