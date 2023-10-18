@@ -26,8 +26,9 @@ jobs:
         #run: npm ci
 
       - name: Show ~/.npmrc contents
-        run: |
-          cat ~/.npmrc
+        run: |          
+          cat ${{ NPM_CONFIG_USERCONFIG }}
+        # cat ~/.npmrc
 
 
       - name: Download OpenAPI Generator CLI
@@ -48,8 +49,7 @@ jobs:
 
       - name: Show .npmrc contents
         run: |
-          cat ${{ NPM_CONFIG_USERCONFIG }}
-        # cat .npmrc
+          cat .npmrc
 
       - name: Show Available Node and NPM Versions
         run: |
