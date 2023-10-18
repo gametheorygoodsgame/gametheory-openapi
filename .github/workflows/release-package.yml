@@ -29,7 +29,6 @@ jobs:
 
       - name: Install dependencies
         run:
-          npm login --registry=https://npm.pkg.github.com --username=eikermannlfh password=${secrets.NODE_AUTH_TOKEN}
           npm ci
       - name: Show Available Node and NPM Versions
         run: |
