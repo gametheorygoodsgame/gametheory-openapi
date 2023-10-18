@@ -23,7 +23,7 @@ jobs:
           registry-url: 'https://npm.pkg.github.com'
           #token: echo ${{ secrets.NODE_AUTH_TOKEN }}
         env:
-          NODE_AUTH_TOKEN: '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'
+          NODE_AUTH_TOKEN: ${{ secrets.NODE_AUTH_TOKEN }}
 
       - name: Test NodeJS
         run: |
