@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/EikermannLFH/GameTheoryAPI/issues"
   },
-  "homepage": "https://github.com/EikermannLFH/GameTheoryAPI#readme"
+  "homepage": "https://github.com/EikermannLFH/GameTheoryAPI#readme",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com"
+  }
 }
