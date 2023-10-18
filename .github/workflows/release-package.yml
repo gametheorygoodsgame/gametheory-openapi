@@ -34,6 +34,14 @@ jobs:
           echo "@eikermannlfh:registry=https://npm.pkg.github.com" > ~/.npmrc
           echo "always-auth=true" > ~/.npmrc
 
+      - name: Show .npmrc contents
+        run: |
+          cat .npmrc
+
+      - name: Show ~/.npmrc contents
+        run: |
+          cat ~/.npmrc
+
       - name: Show Available Node and NPM Versions
         run: |
           node --version
