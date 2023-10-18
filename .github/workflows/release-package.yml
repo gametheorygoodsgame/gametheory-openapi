@@ -19,7 +19,7 @@ jobs:
           #registry-url: 'https://registry.npmjs.org/'
           #node-version-file: '.npmrc'
           #cache: 'npm'
-          node-version: '14'
+          node-version: '16'
 
       - name: Download OpenAPI Generator CLI
         run: |
