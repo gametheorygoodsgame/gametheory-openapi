@@ -1,0 +1,5 @@
+inputSpec: api.yml
+outputDir: api-npm
+generatorName: typescript-fetch
+additionalProperties:
+  npmName: "@leibniz-fh/gametheory-api"

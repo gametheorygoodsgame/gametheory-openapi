@@ -1,0 +1,45 @@
+name: Build and Publish Swagger Node Package
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build_and_publish:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out code
+        uses: actions/checkout@v2
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: '16'
+
+      - name: Download OpenAPI Generator CLI
+        run: |
+          mkdir -p openapi-generator-cli
+          curl -L -o openapi-generator-cli/openapi-generator-cli.jar https://repo1.maven.org/maven2/org/openapitools/openapi-generator-cli/6.4.0/openapi-generator-cli-6.4.0.jar
+        continue-on-error: false
+
+      - name: Install dependencies
+        run: npm install
+      - name: Show Available Node and NPM Versions
+        run: |
+          node --version
+          npm --version
+      - name: Validate Swagger Specification
+        run: npx swagger-cli validate openAPI.yaml
+
+      - name: Generate Code from Swagger
+        run: |
+          java -jar openapi-generator-cli/openapi-generator-cli.jar generate -i openAPI.yaml -g nodejs-server -o generated-code
+          cd generated-code
+          npm init -y
+          npm install
+          npm publish
+        continue-on-error: false
+      - name: Show Generated Code Contents
+        run: ls -l

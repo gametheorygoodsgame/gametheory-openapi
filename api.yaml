@@ -1,0 +1,988 @@
+openapi: 3.0.3
+info:
+  title: GameTheory
+  description: This is a sample description about this spec.
+  termsOfService: ''
+  contact:
+    email: jens.eikermann.2022@leibniz-fh.de
+  license:
+    name: Apache 2.0
+    url: http://www.apache.org/licenses/LICENSE-2.0.html
+  version: 0.0.1
+externalDocs:
+  description: Find out more about spec
+  url: ''
+servers: []
+tags:
+  - name: Game
+    description: The Game or GameState Object.
+  - name: Game -> Player
+    description: The Player or PlayerState
+    externalDocs:
+      description: ''
+      url: ''
+  - name: Game -> Player -> Move
+    description: The Moves.
+    externalDocs:
+      description: ''
+      url: ''
+  - name: Game -> Move
+    description: ''
+    externalDocs:
+      description: ''
+      url: ''
+  - name: Player
+    description: ''
+    externalDocs:
+      description: ''
+      url: ''
+  - name: Person
+    description: ''
+    externalDocs:
+      description: ''
+      url: ''
+paths:
+  /games/{gameId}:
+    get:
+      summary: Get a game by Id.
+      description: ''
+      operationId: ''
+      tags:
+        - Game
+      parameters:
+        - in: path
+          name: gameId
+          description: ''
+          schema:
+            type: string
+            minLength: 36
+            maxLength: 36
+            pattern: >-
+              ^[0-9a-fA-F]{8}\b-[0-9a-fA-F]{4}\b-[0-9a-fA-F]{4}\b-[0-9a-fA-F]{4}\b-[0-9a-fA-F]{12}$
+            format: uuid
+          required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/game'
+                description: A GameState-Object.
+    delete:
+      summary: Delete a game.
+      description: ''
+      operationId: ''
+      tags:
+        - Game
+      parameters:
+        - in: path
+          name: gameId
+          description: ''
+          schema:
+            type: string
+            minLength: 36
+            maxLength: 36
+            pattern: >-
+              ^[0-9a-fA-F]{8}\b-[0-9a-fA-F]{4}\b-[0-9a-fA-F]{4}\b-[0-9a-fA-F]{4}\b-[0-9a-fA-F]{12}$
+            format: uuid
+          required: true
+      responses:
+        '204':
+          description: Deleted.
+    put:
+      summary: Change a Game.
+      description: ''
+      operationId: ''
+      tags:
+        - Game
+      parameters:
+        - in: path
+          name: gameId
+          description: ''
+          schema:
+            type: string
+            minLength: 36
+            maxLength: 36
+            pattern: >-
+              ^[0-9a-fA-F]{8}\b-[0-9a-fA-F]{4}\b-[0-9a-fA-F]{4}\b-[0-9a-fA-F]{4}\b-[0-9a-fA-F]{12}$
+            format: uuid
+          required: true
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                Game:
+                  $ref: '#/components/schemas/game'
+              required:
+                - Game
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/game'
+          description: OK
+  /games:
+    get:
+      summary: Returns a list of all Games.
+      description: ''
+      operationId: ''
+      tags:
+        - Game
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/game'
+                description: List of all Games.
+          description: OK
+    post:
+      summary: Creates a new Game.
+      description: ''
+      operationId: ''
+      tags:
+        - Game
+      parameters: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/game'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/game'
+          description: OK
+  /games/{gameId}/players:
+    get:
+      summary: Returns a List of all Players in this game
+      description: ''
+      operationId: ''
+      tags:
+        - Game -> Player
+      parameters:
+        - in: path
+          name: gameId
+          description: ''
+          schema:
+            type: string
+            minLength: 36
+            maxLength: 36
+            pattern: >-
+              ^[0-9a-fA-F]{8}\b-[0-9a-fA-F]{4}\b-[0-9a-fA-F]{4}\b-[0-9a-fA-F]{4}\b-[0-9a-fA-F]{12}$
+            format: uuid
+          required: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/player'
+          description: OK
+    post:
+      summary: Add a new Player to the Game.
+      description: ''
+      operationId: ''
+      tags:
+        - Game -> Player
+      parameters:
+        - in: path
+          name: gameId
+          description: ''
+          schema:
+            type: string
+            minLength: 36
+            maxLength: 36
+            pattern: >-
+              ^[0-9a-fA-F]{8}\b-[0-9a-fA-F]{4}\b-[0-9a-fA-F]{4}\b-[0-9a-fA-F]{4}\b-[0-9a-fA-F]{12}$
+            format: uuid
+          required: true
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/player'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/player'
+          description: OK
+  /games/{gameId}/moves:
+    get:
+      summary: Returns the moves played in this Game.
+      description: ''
+      operationId: ''
+      tags:
+        - Game -> Move
+      parameters:
+        - in: path
+          name: gameId
+          description: ''
+          schema:
+            type: string
+            minLength: 36
+            maxLength: 36
+            pattern: >-
+              ^[0-9a-fA-F]{8}\b-[0-9a-fA-F]{4}\b-[0-9a-fA-F]{4}\b-[0-9a-fA-F]{4}\b-[0-9a-fA-F]{12}$
+            format: uuid
+          required: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/move'
+          description: OK
+  /games/{gameId}/moves/turns/{turnNumber}:
+    get:
+      summary: Returns all moves of a Turn.
+      description: ''
+      operationId: ''
+      tags:
+        - Game -> Move
+      parameters:
+        - in: path
+          name: gameId
+          description: ''
+          schema:
+            type: string
+            minLength: 36
+            maxLength: 36
+            pattern: >-
+              ^[0-9a-fA-F]{8}\b-[0-9a-fA-F]{4}\b-[0-9a-fA-F]{4}\b-[0-9a-fA-F]{4}\b-[0-9a-fA-F]{12}$
+            format: uuid
+          required: true
+        - in: path
+          name: turnNumber
+          description: ''
+          schema:
+            type: integer
+            minimum: 0
+            default: 0
+          required: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/move'
+          description: OK
+  /games/{gameId}/players/{playerId}/moves/:
+    get:
+      summary: Returns all Moves of a Player.
+      description: ''
+      operationId: ''
+      tags:
+        - Game -> Player -> Move
+      parameters:
+        - in: path
+          name: gameId
+          description: ''
+          schema:
+            type: string
+            minLength: 36
+            maxLength: 36
+            pattern: >-
+              ^[0-9a-fA-F]{8}\b-[0-9a-fA-F]{4}\b-[0-9a-fA-F]{4}\b-[0-9a-fA-F]{4}\b-[0-9a-fA-F]{12}$
+            format: uuid
+          required: true
+        - in: path
+          name: playerId
+          description: ''
+          schema: &ref_2
+            type: string
+          required: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/move'
+          description: OK
+  /games/{gameId}/players/{playerId}/moves/turns/{numTurn}:
+    get:
+      summary: Returns the Move a Player made in a Turn
+      description: ''
+      operationId: ''
+      tags:
+        - Game -> Player -> Move
+      parameters:
+        - in: path
+          name: gameId
+          description: ''
+          schema: *ref_2
+          required: true
+        - in: path
+          name: playerId
+          description: ''
+          schema: *ref_2
+          required: true
+        - in: path
+          name: numTurn
+          description: ''
+          schema:
+            type: integer
+            exclusiveMinimum: false
+            minimum: 0
+            default: 0
+          required: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/move'
+          description: OK
+    post:
+      summary: Creates a Move for a Player in the given Turn.
+      description: ''
+      operationId: ''
+      tags:
+        - Game -> Player -> Move
+      parameters:
+        - in: path
+          name: gameId
+          description: ''
+          schema:
+            type: string
+            minLength: 36
+            maxLength: 36
+            pattern: >-
+              ^[0-9a-fA-F]{8}\b-[0-9a-fA-F]{4}\b-[0-9a-fA-F]{4}\b-[0-9a-fA-F]{4}\b-[0-9a-fA-F]{12}$
+            format: uuid
+          required: true
+        - in: path
+          name: playerId
+          description: ''
+          schema:
+            type: string
+            minLength: 36
+            maxLength: 36
+            pattern: >-
+              ^[0-9a-fA-F]{8}\b-[0-9a-fA-F]{4}\b-[0-9a-fA-F]{4}\b-[0-9a-fA-F]{4}\b-[0-9a-fA-F]{12}$
+            format: uuid
+          required: true
+        - in: path
+          name: numTurn
+          description: ''
+          schema:
+            type: integer
+            exclusiveMinimum: false
+            minimum: 0
+            default: 0
+          required: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/move'
+          description: OK
+    delete:
+      summary: Deletes a Move of the Player in the given Turn.
+      description: ''
+      operationId: ''
+      tags:
+        - Game -> Player -> Move
+      parameters:
+        - in: path
+          name: gameId
+          description: ''
+          schema: *ref_2
+          required: true
+        - in: path
+          name: playerId
+          description: ''
+          schema: *ref_2
+          required: true
+        - in: path
+          name: numTurn
+          description: ''
+          schema:
+            type: integer
+            exclusiveMinimum: false
+            minimum: 0
+            default: 0
+          required: true
+      responses:
+        '204':
+          description: Deleted
+    put:
+      summary: Changes the Move a Player made in the given Turn.
+      description: ''
+      operationId: ''
+      tags:
+        - Game -> Player -> Move
+      parameters:
+        - in: path
+          name: gameId
+          description: ''
+          schema: *ref_2
+          required: true
+        - in: path
+          name: playerId
+          description: ''
+          schema: *ref_2
+          required: true
+        - in: path
+          name: numTurn
+          description: ''
+          schema:
+            type: integer
+            exclusiveMinimum: false
+            minimum: 0
+            default: 0
+          required: true
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/move'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/move'
+          description: OK
+  /players:
+    get:
+      summary: Get all Players.
+      description: ''
+      operationId: ''
+      tags:
+        - Player
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/player'
+          description: OK
+    post:
+      summary: Create a Player.
+      description: ''
+      operationId: ''
+      tags:
+        - Player
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/player'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/player'
+          description: OK
+  /players/{playerId}:
+    delete:
+      summary: Delete a Player by Id.
+      description: ''
+      operationId: ''
+      tags:
+        - Player
+      parameters:
+        - in: path
+          name: playerId
+          description: ''
+          schema:
+            type: string
+            minLength: 36
+            maxLength: 36
+            pattern: >-
+              ^[0-9a-fA-F]{8}\b-[0-9a-fA-F]{4}\b-[0-9a-fA-F]{4}\b-[0-9a-fA-F]{4}\b-[0-9a-fA-F]{12}$
+            format: uuid
+          required: true
+      responses:
+        '204':
+          description: Deleted
+    put:
+      summary: Change a Player.
+      description: ''
+      operationId: ''
+      tags:
+        - Player
+      parameters:
+        - in: path
+          name: playerId
+          description: ''
+          schema:
+            type: string
+            minLength: 36
+            maxLength: 36
+            pattern: >-
+              ^[0-9a-fA-F]{8}\b-[0-9a-fA-F]{4}\b-[0-9a-fA-F]{4}\b-[0-9a-fA-F]{4}\b-[0-9a-fA-F]{12}$
+            format: uuid
+          required: true
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/player'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/player'
+          description: OK
+  /persons/:
+    get:
+      summary: Return all Persons.
+      description: ''
+      operationId: ''
+      tags:
+        - Person
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/person'
+          description: OK
+    post:
+      summary: Create a Person.
+      description: ''
+      operationId: ''
+      tags:
+        - Person
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/person'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/person'
+          description: OK
+  /persons/{personId}:
+    delete:
+      summary: Delete a Person.
+      description: ''
+      operationId: ''
+      tags: &ref_5
+        - Person
+      parameters:
+        - in: path
+          name: personId
+          description: ''
+          schema: *ref_2
+          required: true
+      responses:
+        '204':
+          description: Deleted
+    put:
+      summary: Change a Person
+      description: ''
+      operationId: ''
+      tags: *ref_5
+      parameters:
+        - in: path
+          name: personId
+          description: ''
+          schema:
+            type: string
+            minLength: 36
+            maxLength: 36
+            pattern: >-
+              ^[0-9a-fA-F]{8}\b-[0-9a-fA-F]{4}\b-[0-9a-fA-F]{4}\b-[0-9a-fA-F]{4}\b-[0-9a-fA-F]{12}$
+            format: uuid
+          required: true
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/person'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/person'
+          description: OK
+  /games/{gameId}/maxTurn:
+    get:
+      summary: Get the amount of Turns to be played
+      description: ''
+      operationId: ''
+      tags:
+        - Game
+      parameters:
+        - in: path
+          name: gameId
+          description: ''
+          schema:
+            type: string
+            minLength: 36
+            maxLength: 36
+            pattern: >-
+              ^[0-9a-fA-F]{8}\b-[0-9a-fA-F]{4}\b-[0-9a-fA-F]{4}\b-[0-9a-fA-F]{4}\b-[0-9a-fA-F]{12}$
+            format: uuid
+          required: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: integer
+                exclusiveMinimum: false
+                minimum: 1
+                default: 1
+          description: OK
+    put:
+      summary: Change the amount of Turns to be played.
+      description: ''
+      operationId: ''
+      tags:
+        - Game
+      parameters:
+        - in: path
+          name: gameId
+          description: ''
+          schema:
+            type: string
+            minLength: 36
+            maxLength: 36
+            pattern: >-
+              ^[0-9a-fA-F]{8}\b-[0-9a-fA-F]{4}\b-[0-9a-fA-F]{4}\b-[0-9a-fA-F]{4}\b-[0-9a-fA-F]{12}$
+            format: uuid
+          required: true
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: integer
+              minimum: 1
+              default: 1
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: integer
+                minimum: 1
+                default: 1
+          description: OK
+  /games/{gameId}/cardHandValue:
+    get:
+      summary: Return the Value a Red Card has on a Player's Hand.
+      description: ''
+      operationId: ''
+      tags: &ref_7
+        - Game
+      parameters:
+        - in: path
+          name: gameId
+          description: ''
+          schema:
+            type: string
+            minLength: 36
+            maxLength: 36
+            pattern: >-
+              ^[0-9a-fA-F]{8}\b-[0-9a-fA-F]{4}\b-[0-9a-fA-F]{4}\b-[0-9a-fA-F]{4}\b-[0-9a-fA-F]{12}$
+            format: uuid
+          required: true
+      responses:
+        '200':
+          content: &ref_8
+            application/json:
+              schema:
+                type: integer
+                minimum: 1
+                default: 1
+          description: OK
+    put:
+      summary: Change the Value a Red Card has on a Player's Hand.
+      description: ''
+      operationId: ''
+      tags: *ref_7
+      parameters:
+        - in: path
+          name: gameId
+          description: ''
+          schema: *ref_2
+          required: true
+      requestBody: &ref_9
+        content:
+          application/json:
+            schema:
+              type: integer
+              minimum: 1
+              default: 1
+      responses:
+        '200':
+          content: &ref_10
+            application/json:
+              schema:
+                type: integer
+                minimum: 1
+                default: 1
+          description: OK
+  /games/{gameId}/cardPotValue/:
+    get:
+      summary: Return the Value a Red Card has in the Public Goods' Pot.
+      description: ''
+      operationId: ''
+      tags: *ref_7
+      parameters:
+        - in: path
+          name: gameId
+          description: ''
+          schema:
+            type: string
+            minLength: 36
+            maxLength: 36
+            pattern: >-
+              ^[0-9a-fA-F]{8}\b-[0-9a-fA-F]{4}\b-[0-9a-fA-F]{4}\b-[0-9a-fA-F]{4}\b-[0-9a-fA-F]{12}$
+            format: uuid
+          required: true
+      responses:
+        '200':
+          content: *ref_8
+          description: OK
+    put:
+      summary: Change the Value a Red Card has in the Public Goods' Pot.
+      description: ''
+      operationId: ''
+      tags: *ref_7
+      parameters:
+        - in: path
+          name: gameId
+          description: ''
+          schema:
+            type: string
+            minLength: 36
+            maxLength: 36
+            pattern: >-
+              ^[0-9a-fA-F]{8}\b-[0-9a-fA-F]{4}\b-[0-9a-fA-F]{4}\b-[0-9a-fA-F]{4}\b-[0-9a-fA-F]{12}$
+            format: uuid
+          required: true
+      requestBody: *ref_9
+      responses:
+        '200':
+          content: *ref_10
+          description: OK
+  /games/{gameId}/potCards:
+    get:
+      summary: Get the number of Red Cards in the Public Goods' Pot.
+      description: ''
+      operationId: ''
+      tags:
+        - Game
+      parameters:
+        - in: path
+          name: gameId
+          description: ''
+          schema:
+            type: string
+            minLength: 36
+            maxLength: 36
+            pattern: >-
+              ^[0-9a-fA-F]{8}\b-[0-9a-fA-F]{4}\b-[0-9a-fA-F]{4}\b-[0-9a-fA-F]{4}\b-[0-9a-fA-F]{12}$
+            format: uuid
+          required: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: integer
+                minimum: 0
+                default: 0
+          description: OK
+components:
+  schemas:
+    game:
+      type: object
+      properties:
+        gameId:
+          type: string
+          minLength: 36
+          maxLength: 36
+          pattern: >-
+            ^[0-9a-fA-F]{8}\b-[0-9a-fA-F]{4}\b-[0-9a-fA-F]{4}\b-[0-9a-fA-F]{4}\b-[0-9a-fA-F]{12}$
+          format: uuid
+        maxTurn:
+          type: integer
+          description: Number of turns.
+          default: 5
+          minimum: 1
+        currTurn:
+          type: integer
+          description: Current Turn.
+          minimum: 0
+          default: 0
+        players:
+          type: array
+          items:
+            type: string
+            minLength: 36
+            maxLength: 36
+            pattern: >-
+              ^[0-9a-fA-F]{8}\b-[0-9a-fA-F]{4}\b-[0-9a-fA-F]{4}\b-[0-9a-fA-F]{4}\b-[0-9a-fA-F]{12}$
+            format: uuid
+          description: List of Players
+        cardHandValue:
+          type: integer
+          description: Value of a Red Card on the players Hand.
+          minimum: 1
+          default: 1
+        cardPotValue:
+          type: integer
+          description: >-
+            Value of a Red Card in the Public Goods' Pot. Determined by the Game
+            Owner.
+          minimum: 1
+          default: 2
+        owner:
+          $ref: '#/components/schemas/player'
+        potCards:
+          type: integer
+          description: Number of Red Cards in the Public Goods' Pot.
+          default: 0
+          minimum: 0
+        opened:
+          type: string
+          format: date-time
+        closed:
+          type: string
+          format: date-time
+      description: Game
+      required:
+        - gameId
+        - maxTurn
+        - currTurn
+        - players
+        - cardHandValue
+        - cardPotValue
+        - owner
+        - potCards
+        - opened
+        - closed
+    player:
+      type: object
+      properties:
+        score:
+          type: number
+          description: The Player's score.
+          default: 0
+          minimum: 0
+        personId:
+          type: string
+          minLength: 36
+          maxLength: 36
+          pattern: >-
+            ^[0-9a-fA-F]{8}\b-[0-9a-fA-F]{4}\b-[0-9a-fA-F]{4}\b-[0-9a-fA-F]{4}\b-[0-9a-fA-F]{12}$
+          format: uuid
+        playerId:
+          type: string
+          minLength: 36
+          maxLength: 36
+          pattern: >-
+            ^[0-9a-fA-F]{8}\b-[0-9a-fA-F]{4}\b-[0-9a-fA-F]{4}\b-[0-9a-fA-F]{4}\b-[0-9a-fA-F]{12}$
+          format: uuid
+      description: PlayerState
+      required:
+        - score
+        - personId
+        - playerId
+    person:
+      type: object
+      properties:
+        personId:
+          type: string
+          description: UUIDv4
+          minLength: 36
+          maxLength: 36
+          pattern: >-
+            ^[0-9a-fA-F]{8}\b-[0-9a-fA-F]{4}\b-[0-9a-fA-F]{4}\b-[0-9a-fA-F]{4}\b-[0-9a-fA-F]{12}$
+          format: uuid
+        firstName:
+          type: string
+          pattern: \b([A-ZÀ-ÿ][-a-z. ']+[ ]*)+
+          minLength: 2
+          maxLength: 1024
+        lastName:
+          type: string
+          pattern: \b([A-ZÀ-ÿ][-a-z. ']+[ ]*)+
+          minLength: 2
+          maxLength: 1024
+        salutation:
+          type: string
+          enum:
+            - Mr.
+            - Mrs.
+            - Mx.
+          default: Mr.
+        title:
+          type: string
+        course:
+          type: string
+      description: A Person-Object.
+      required:
+        - personId
+        - firstName
+        - lastName
+        - salutation
+    move:
+      type: object
+      properties:
+        moveId:
+          type: string
+          description: UUIDv4
+          minLength: 36
+          maxLength: 36
+          pattern: >-
+            ^[0-9a-fA-F]{8}\b-[0-9a-fA-F]{4}\b-[0-9a-fA-F]{4}\b-[0-9a-fA-F]{4}\b-[0-9a-fA-F]{12}$
+          format: uuid
+        playerId:
+          type: string
+          description: UUIDv4
+          minLength: 36
+          maxLength: 36
+          pattern: >-
+            ^[0-9a-fA-F]{8}\b-[0-9a-fA-F]{4}\b-[0-9a-fA-F]{4}\b-[0-9a-fA-F]{4}\b-[0-9a-fA-F]{12}$
+          format: uuid
+        numTurn:
+          type: integer
+          minimum: 0
+          default: 0
+        numCards:
+          type: integer
+          default: 0
+          minimum: 0
+          maximum: 2
+      required:
+        - playerId
+        - numTurn
+        - numCards
+        - moveId
+  securitySchemes: {}
