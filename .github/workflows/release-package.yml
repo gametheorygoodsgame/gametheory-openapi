@@ -40,9 +40,9 @@ jobs:
         run: |
           java -jar openapi-generator-cli/openapi-generator-cli.jar generate -i GameTheoryAPI.yaml -g typescript-fetch -o generated-code
           cd generated-code
+          npm login --registry=https://npm.pkg.github.com --username=eikermannlfh password=${{secrets.NODE_AUTH_TOKEN}}
           npm init -y
           npm install
-          npm login --registry=https://npm.pkg.github.com --username=eikermannlfh password=${{secrets.NODE_AUTH_TOKEN}}
           npm publish
         env:
           NODE_AUTH_TOKEN: ${{secrets.NODE_AUTH_TOKEN}}
