@@ -21,7 +21,6 @@ jobs:
         with:
           node-version: '20.x'
           registry-url: 'https://npm.pkg.github.com'
-      - run: npm install
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NODE_AUTH_TOKEN }}
         #run: npm ci
@@ -48,9 +47,9 @@ jobs:
       #    echo "@eikermannlfh:registry=https://npm.pkg.github.com" >> ~/.npmrc
       #    echo "always-auth=true" >> ~/.npmrc
 
-      - name: Show .npmrc contents
-        run: |
-          cat .npmrc
+      #- name: Show .npmrc contents
+      #  run: |
+      #    cat .npmrc
 
       - name: Show Available Node and NPM Versions
         run: |
@@ -64,6 +63,9 @@ jobs:
         run: |
           java -jar openapi-generator-cli/openapi-generator-cli.jar generate -i GameTheoryAPI.yaml -g typescript-fetch -o generated-code
           cd generated-code
+
+      - name: Initialize and publish package
+        run: |
           npm init -y
           npm install
           npm publish
