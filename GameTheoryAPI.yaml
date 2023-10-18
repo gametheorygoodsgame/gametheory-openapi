@@ -132,8 +132,6 @@ paths:
       operationId: getAllGames
       tags:
         - Game
-      parameters: []
-      requestBody: &ref_0 {}
       responses:
         '200':
           content:
@@ -182,7 +180,6 @@ paths:
               ^[0-9a-fA-F]{8}\b-[0-9a-fA-F]{4}\b-[0-9a-fA-F]{4}\b-[0-9a-fA-F]{4}\b-[0-9a-fA-F]{12}$
             format: uuid
           required: true
-      requestBody: *ref_0
       responses:
         '200':
           content:
@@ -243,7 +240,6 @@ paths:
               ^[0-9a-fA-F]{8}\b-[0-9a-fA-F]{4}\b-[0-9a-fA-F]{4}\b-[0-9a-fA-F]{4}\b-[0-9a-fA-F]{12}$
             format: uuid
           required: true
-      requestBody: *ref_0
       responses:
         '200':
           content:
@@ -279,7 +275,7 @@ paths:
             type: integer
             minimum: 0
             default: 0
-      requestBody: &ref_1 {}
+          required: true
       responses:
         '200':
           content:
@@ -314,7 +310,6 @@ paths:
           schema: &ref_2
             type: string
           required: true
-      requestBody: *ref_1
       responses:
         '200':
           content:
@@ -351,7 +346,6 @@ paths:
             minimum: 0
             default: 0
           required: true
-      requestBody: *ref_1
       responses:
         '200':
           content:
@@ -397,7 +391,6 @@ paths:
             minimum: 0
             default: 0
           required: true
-      requestBody: *ref_1
       responses:
         '200':
           content:
@@ -431,7 +424,6 @@ paths:
             minimum: 0
             default: 0
           required: true
-      requestBody: *ref_1
       responses:
         '204':
           description: Deleted
@@ -480,8 +472,6 @@ paths:
       operationId: getAllPlayers
       tags:
         - Player
-      parameters: &ref_3 []
-      requestBody: &ref_4 {}
       responses:
         '200':
           content:
@@ -497,7 +487,6 @@ paths:
       operationId: createPlayer
       tags:
         - Player
-      parameters: *ref_3
       requestBody:
         content:
           application/json:
@@ -529,8 +518,6 @@ paths:
               ^[0-9a-fA-F]{8}\b-[0-9a-fA-F]{4}\b-[0-9a-fA-F]{4}\b-[0-9a-fA-F]{4}\b-[0-9a-fA-F]{12}$
             format: uuid
           required: true
-      requestBody:
-        content: {}
       responses:
         '204':
           description: Deleted
@@ -571,8 +558,6 @@ paths:
       operationId: getAllPersons
       tags:
         - Person
-      parameters: *ref_3
-      requestBody: *ref_4
       responses:
         '200':
           content:
@@ -586,7 +571,6 @@ paths:
       operationId: createPerson
       tags:
         - Person
-      parameters: *ref_3
       requestBody:
         content:
           application/json:
@@ -612,7 +596,6 @@ paths:
           description: ''
           schema: *ref_2
           required: true
-      requestBody: *ref_4
       responses:
         '204':
           description: Deleted
@@ -658,7 +641,6 @@ paths:
           description: ''
           schema: *ref_2
           required: true
-      requestBody: &ref_6 {}
       responses:
         '200':
           content:
@@ -716,7 +698,6 @@ paths:
           description: ''
           schema: *ref_2
           required: true
-      requestBody: *ref_6
       responses:
         '200':
           content: &ref_8
@@ -765,7 +746,6 @@ paths:
           description: ''
           schema: *ref_2
           required: true
-      requestBody: *ref_6
       responses:
         '200':
           content: *ref_8
@@ -811,7 +791,6 @@ paths:
               ^[0-9a-fA-F]{8}\b-[0-9a-fA-F]{4}\b-[0-9a-fA-F]{4}\b-[0-9a-fA-F]{4}\b-[0-9a-fA-F]{12}$
             format: uuid
           required: true
-      requestBody: *ref_6
       responses:
         '200':
           content:
