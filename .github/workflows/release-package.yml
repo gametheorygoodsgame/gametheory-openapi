@@ -16,9 +16,9 @@ jobs:
       - name: set node-version
         uses: actions/setup-node@v3
         with:
-          registry-url: 'https://registry.npmjs.org/'
+          #registry-url: 'https://registry.npmjs.org/'
           #node-version-file: '.npmrc'
-          cache: 'npm'
+          #cache: 'npm'
           node-version: '16'
 
       - name: Download OpenAPI Generator CLI
