@@ -35,7 +35,7 @@ jobs:
 
       - name: Generate Code from Swagger
         run: |
-          java -jar openapi-generator-cli/openapi-generator-cli.jar generate -i openAPI.yaml -g nodejs-server -o generated-code
+          java -jar openapi-generator-cli/openapi-generator-cli.jar generate -i GameTheoryAPI.yaml -g nodejs-server -o generated-code
           cd generated-code
           npm init -y
           npm install
