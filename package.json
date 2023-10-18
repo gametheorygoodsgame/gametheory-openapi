@@ -1,6 +1,9 @@
 {
-  "name": "gametheory-api",
-  "version": "0.0.1",
+  "name": "@eikermannlfh/gametheoryapi",
+  "version": "0.0.1",,
+  "publishConfig": {
+    "@eikermannlfh": "https://npm.pkg.github.com"
+  },
   "description": "",
   "main": "index.js",
   "scripts": {
@@ -15,8 +18,5 @@
   "bugs": {
     "url": "https://github.com/EikermannLFH/GameTheoryAPI/issues"
   },
-  "homepage": "https://github.com/EikermannLFH/GameTheoryAPI#readme",
-  "publishConfig": {
-    "registry": "https://npm.pkg.github.com"
-  }
+  "homepage": "https://github.com/EikermannLFH/GameTheoryAPI#readme"
 }
