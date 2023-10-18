@@ -48,7 +48,8 @@ jobs:
 
       - name: Show .npmrc contents
         run: |
-          cat .npmrc
+          cat ${{ NPM_CONFIG_USERCONFIG }}
+        # cat .npmrc
 
       - name: Show Available Node and NPM Versions
         run: |
