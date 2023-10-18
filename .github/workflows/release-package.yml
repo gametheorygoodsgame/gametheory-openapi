@@ -30,7 +30,7 @@ jobs:
 
       - name: Create or update ~/.npmrc
         run: |
-          echo "//npm.pkg.github.com/:_authToken${{secrets.NODE_AUTH_TOKEN}}" > ~/.npmrc
+          echo "//npm.pkg.github.com/:_authToken=${{secrets.NODE_AUTH_TOKEN}}" > ~/.npmrc
           echo "@eikermannlfh:registry=https://npm.pkg.github.com" > ~/.npmrc
           echo "always-auth=true" > ~/.npmrc
 
