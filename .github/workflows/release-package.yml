@@ -27,7 +27,7 @@ jobs:
 
       - name: Show ~/.npmrc contents
         run: |          
-          cat ${{ NPM_CONFIG_USERCONFIG }}
+          cat $NPM_CONFIG_USERCONFIG
         # cat ~/.npmrc
 
 
