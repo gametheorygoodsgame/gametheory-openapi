@@ -31,7 +31,7 @@ jobs:
           node --version
           npm --version
       - name: Validate Swagger Specification
-        run: npx swagger-cli validate openAPI.yaml
+        run: npx swagger-cli validate GameTheoryAPI.yaml
 
       - name: Generate Code from Swagger
         run: |
