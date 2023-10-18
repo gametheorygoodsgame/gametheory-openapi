@@ -29,7 +29,7 @@ jobs:
 
       - name: Install dependencies
         run:
-          npm ci
+          npm install
       - name: Show Available Node and NPM Versions
         run: |
           node --version
@@ -41,6 +41,7 @@ jobs:
         run: |
           java -jar openapi-generator-cli/openapi-generator-cli.jar generate -i GameTheoryAPI.yaml -g typescript-fetch -o generated-code
           cd generated-code
+          npm ci
           npm init -y
           npm publish
         env:
