@@ -27,8 +27,8 @@ jobs:
         run: |
           npm ci
           npm test
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.NODE_AUTH_TOKEN }}
+        #env:
+        #  NODE_AUTH_TOKEN: ${{ secrets.NODE_AUTH_TOKEN }}
         #run: npm ci
 
       - name: Show ~/.npmrc contents
@@ -43,9 +43,9 @@ jobs:
           curl -L -o openapi-generator-cli/openapi-generator-cli.jar https://repo1.maven.org/maven2/org/openapitools/openapi-generator-cli/6.4.0/openapi-generator-cli-6.4.0.jar
         continue-on-error: false
 
-      - name: Install dependencies
-        run:
-          npm install
+      #- name: Install dependencies
+       # run:
+        #  npm install
 
       #- name: Create or update ~/.npmrc
       #  run: |
@@ -73,7 +73,7 @@ jobs:
       - name: Initialize and publish package
         run: |
           npm init -y
-          npm install
+        #  npm install
           npm publish
         #--registry=https://npm.pkg.github.com
 
