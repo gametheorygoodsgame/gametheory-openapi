@@ -1,6 +1,6 @@
 {
   "name": "@eikermannlfh/gametheoryapi",
-  "version": "0.0.1",,
+  "version": "0.0.1",
   "publishConfig": {
     "@eikermannlfh": "https://npm.pkg.github.com"
   },
