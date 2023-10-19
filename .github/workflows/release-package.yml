@@ -50,8 +50,7 @@ jobs:
         run: ls -l
 
       - name: Update package.json with API Version
-        run: jq --arg newVersion "$API_VERSION" '.version = $newVersion' package.json > temp.json && mv temp.json generated-code/package.json
-        working-directory: generated-code
+        run: jq --arg newVersion "$API_VERSION" '.version = $newVersion' package.json > temp.json && mv temp.json package.json
 
       - name: Initialize and Publish Package
         run: |
