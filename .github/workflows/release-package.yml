@@ -77,8 +77,7 @@ jobs:
           cd generated-code
           # Install dts-gen as a dev dependency
           npm install --save-dev dts-gen
-          # Find all JavaScript files and generate TypeScript declaration files for each
-          find . -type f -name "*.js" -exec npx dts-gen {} \;
+          npx dts-gen -m index -s
         shell: /usr/bin/bash -e {0}
 
       - name: Publish Package
