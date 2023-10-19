@@ -20,7 +20,7 @@ jobs:
           registry-url: 'https://npm.pkg.github.com'
 
       - name: Install Dependencies
-        run: npm install
+        run: npm install swagger-express-middleware
 
       - name: Download OpenAPI Generator CLI
         run: |
@@ -35,9 +35,17 @@ jobs:
       - name: Validate Swagger Specification
         run: npx swagger-cli validate GameTheoryAPI.yaml
 
+      - name: Generate Swagger Documentation
+        run: npx swagger-cli bundle GameTheoryAPI.yaml -o generated-code/swagger.json
+
       - name: Generate Code from Swagger
         run: |
           java -jar openapi-generator-cli/openapi-generator-cli.jar generate -i GameTheoryAPI.yaml -g typescript-fetch -o generated-code
+
+      - name: Generate Express Router
+        run: |
+          cd generated-code
+          npm run swagger-express-middleware generate -f GameTheoryAPI.yaml -o generated-code/router.js
 
       - name: Update package.json with API Version
         run: |
