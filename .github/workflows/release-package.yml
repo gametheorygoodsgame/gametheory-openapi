@@ -52,6 +52,9 @@ jobs:
       - name: Update package.json with API Version
         run: jq --arg newVersion "$API_VERSION" '.version = $newVersion' package.json > temp.json && mv temp.json package.json
 
+      - name: Show package.json Contents
+        run: cat package.json
+
       - name: Initialize and Publish Package
         run: |
           npm publish --registry=https://npm.pkg.github.com
