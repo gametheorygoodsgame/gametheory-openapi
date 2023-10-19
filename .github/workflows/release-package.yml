@@ -39,16 +39,42 @@ jobs:
         run: |
           java -jar openapi-generator-cli/openapi-generator-cli.jar generate -i GameTheoryAPI.yaml -g typescript-fetch -o generated-code
 
-      - name: Show package.json Contents
-        run: cat package.json
+      - name: Update package.json with API Version
+        run: |
+          cd generated-code
+          API_VERSION=$(yq -r .info.version ../GameTheoryAPI.yaml)
+          PACKAGE_JSON_CONTENT=$(cat <<-EOF
+            {
+              "name": "@eikermannlfh/gametheoryapi",
+              "version": "$API_VERSION",
+              "publishConfig": {
+                "@eikermannlfh": "https://npm.pkg.github.com"
+              },
+              "description": "",
+              "main": "index.js",
+              "scripts": {
+                "test": "exit 0"
+              },
+              "repository": {
+                "type": "git",
+                "url": "git+https://github.com/EikermannLFH/GameTheoryAPI.git"
+              },
+              "author": "Jens Eikermann",
+              "license": "GPL-3.0",
+              "bugs": {
+                "url": "https://github.com/EikermannLFH/GameTheoryAPI/issues"
+              },
+              "homepage": "https://github.com/EikermannLFH/GameTheoryAPI#readme"
+            }
+          EOF
+          )
+          echo "$PACKAGE_JSON_CONTENT" > package.json
+          cat package.json
+        shell: /usr/bin/bash -e {0}
 
       - name: Publish Package
-        run: |          
+        run: |
           cd generated-code
-          npm init -y
-          API_VERSION=$(yq -r .info.version ../GameTheoryAPI.yaml)
-          jq --arg newVersion "$API_VERSION" '.version = $newVersion' package.json > temp.json && mv temp.json package.json
-          cat package.json
           npm publish --registry=https://npm.pkg.github.com
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NODE_AUTH_TOKEN }}
