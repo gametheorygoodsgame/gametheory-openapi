@@ -44,7 +44,8 @@ jobs:
 
       - name: Install swagger-express-middleware
         run: npm install swagger-express-middleware
-
+        working-directory: generated-code
+        
       - name: Generate Express Router
         run: |
           cd generated-code
