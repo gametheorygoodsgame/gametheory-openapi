@@ -35,9 +35,13 @@ jobs:
       - name: Validate Swagger Specification
         run: npx swagger-cli validate GameTheoryAPI.yaml
 
-      - name: Generate Code from Swagger
+      - name: Install Swagger Codegen
+        run: npm install -g swagger-codegen-cli  # Install Swagger Codegen
+
+      - name: Generate Node.js Server and Swagger Documentation
         run: |
-          java -jar openapi-generator-cli/openapi-generator-cli.jar generate -i GameTheoryAPI.yaml -g typescript-fetch -o generated-code
+          swagger-codegen generate -i GameTheoryAPI.yaml -l nodejs-server -o generated-code
+          swagger-codegen generate -i GameTheoryAPI.yaml -l swagger -o generated-code
 
       - name: Update package.json with API Version
         run: |
