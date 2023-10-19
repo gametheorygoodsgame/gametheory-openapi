@@ -20,7 +20,9 @@ jobs:
           registry-url: 'https://npm.pkg.github.com'
 
       - name: Install Dependencies
-        run: npm install yq
+        run: |
+          npm install
+          apt-get install yq -y
 
       - name: Download OpenAPI Generator CLI
         run: |
@@ -50,7 +52,9 @@ jobs:
         run: ls -l
 
       - name: Update package.json with API Version
-        run: jq --arg newVersion "$API_VERSION" '.version = $newVersion' package.json > temp.json && mv temp.json package.json
+        run: |
+          API_VERSION=$(yq -r .info.version GameTheoryAPI.yaml)
+          jq --arg newVersion "$API_VERSION" '.version = $newVersion' package.json > temp.json && mv temp.json package.json
 
       - name: Show package.json Contents
         run: cat package.json
