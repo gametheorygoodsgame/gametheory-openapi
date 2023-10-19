@@ -47,7 +47,7 @@ jobs:
         shell: /usr/bin/bash -e {0}
 
       - name: Update package.json with API Version
-        run: jq --arg newVersion "$API_VERSION" '.version = $newVersion' package.json > temp.json && mv temp.json package.json
+        run: jq --arg newVersion "$API_VERSION" '.version = $newVersion' package.json > temp.json && mv temp.json generated-code/package.json
         working-directory: generated-code
 
       - name: Initialize and Publish Package
