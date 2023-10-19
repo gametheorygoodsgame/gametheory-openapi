@@ -22,6 +22,10 @@ jobs:
       - name: Install Dependencies
         run: npm install
 
+      - name: Install swagger-express-middleware
+        run: npm install swagger-express-middleware
+        working-directory: generated-code
+
       - name: Download OpenAPI Generator CLI
         run: |
           mkdir -p openapi-generator-cli
@@ -42,10 +46,6 @@ jobs:
         run: |
           java -jar openapi-generator-cli/openapi-generator-cli.jar generate -i GameTheoryAPI.yaml -g typescript-fetch -o generated-code
 
-      - name: Install swagger-express-middleware
-        run: npm install swagger-express-middleware
-        working-directory: generated-code
-        
       - name: Generate Express Router
         run: |
           cd generated-code
