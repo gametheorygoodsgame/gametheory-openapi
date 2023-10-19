@@ -46,9 +46,6 @@ jobs:
           echo "Extracted API_VERSION: $API_VERSION"
         shell: /usr/bin/bash -e {0}
 
-      - name: Show folder
-        run: ls -l
-
       - name: Update package.json with API Version
         run: |
           API_VERSION=$(yq -r .info.version GameTheoryAPI.yaml)
@@ -57,11 +54,11 @@ jobs:
       - name: Show package.json Contents
         run: cat package.json
 
-      - name: Initialize and Publish Package
+      - name: Publish Package
         run: |
           npm publish --registry=https://npm.pkg.github.com
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NODE_AUTH_TOKEN }}
 
       - name: Show Generated Code Contents
-        run: ls -l
+        run: ls -l generated-code
