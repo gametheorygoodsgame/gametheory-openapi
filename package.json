@@ -6,6 +6,9 @@
   },
   "description": "",
   "main": "index.js",
+  "scripts": {
+    "test": "exit 0"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/EikermannLFH/GameTheoryAPI.git"
@@ -15,8 +18,5 @@
   "bugs": {
     "url": "https://github.com/EikermannLFH/GameTheoryAPI/issues"
   },
-  "homepage": "https://github.com/EikermannLFH/GameTheoryAPI#readme",
-  "scripts": {
-    "generate-router": "swagger-express-middleware generate -f GameTheoryAPI.yaml -o generated-code/router.js"
-  }
+  "homepage": "https://github.com/EikermannLFH/GameTheoryAPI#readme"
 }
