@@ -78,7 +78,7 @@ jobs:
           # Install dts-gen as a dev dependency
           npm install --save-dev dts-gen
           # Generate TypeScript declaration files
-          npx dts-gen
+          npx dts-gen generated-code --stdout
 
       - name: Publish Package
         run: |
