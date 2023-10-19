@@ -72,13 +72,14 @@ jobs:
           cat package.json
         shell: /usr/bin/bash -e {0}
 
-      - name: Run dts-gen
+      - name: Generate TypeScript Declaration Files
         run: |
           cd generated-code
           # Install dts-gen as a dev dependency
           npm install --save-dev dts-gen
-          # Generate TypeScript declaration files
-          npx dts-gen generated-code --stdout
+          # Find all JavaScript files and generate TypeScript declaration files for each
+          find . -type f -name "*.js" -exec npx dts-gen {} \;
+        shell: /usr/bin/bash -e {0}
 
       - name: Publish Package
         run: |
