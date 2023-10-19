@@ -22,7 +22,7 @@ jobs:
       - name: Install Dependencies
         run: |
           npm install
-          apt-get install yq -y
+          sudo apt-get install yq -y
 
       - name: Download OpenAPI Generator CLI
         run: |
