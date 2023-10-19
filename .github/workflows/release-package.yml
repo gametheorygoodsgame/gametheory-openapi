@@ -75,7 +75,7 @@ jobs:
       - name: Generate TypeScript Declaration Files
         run: |
           cd generated-code
-          npx -p typescript tsc .js --declaration --allowJs --emitDeclarationOnly --outDir .
+          npx -p typescript tsc *.js --declaration --allowJs --emitDeclarationOnly --outDir .
         shell: /usr/bin/bash -e {0}
 
       - name: Publish Package
