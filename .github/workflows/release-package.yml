@@ -42,7 +42,7 @@ jobs:
 
       - name: Extract API Version
         run: |
-          API_VERSION=$(jq -r '.info.version' GameTheoryAPI.yaml)
+          API_VERSION=$(grep -oP '"version": "\K[^"]+' GameTheoryAPI.yaml)
           echo "Extracted API_VERSION: $API_VERSION"
         shell: /usr/bin/bash -e {0}
 
