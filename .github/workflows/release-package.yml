@@ -75,9 +75,7 @@ jobs:
       - name: Generate TypeScript Declaration Files
         run: |
           cd generated-code
-          # Install dts-gen as a dev dependency
-          npm install --save-dev dts-gen
-          npx dts-gen -m index -s
+          npx -p typescript tsc .js --declaration --allowJs --emitDeclarationOnly --outDir .
         shell: /usr/bin/bash -e {0}
 
       - name: Publish Package
