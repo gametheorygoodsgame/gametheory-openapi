@@ -40,12 +40,11 @@ jobs:
           java -jar openapi-generator-cli/openapi-generator-cli.jar generate -i GameTheoryAPI.yaml -g typescript-fetch -o generated-code
           cd generated-code
 
-      - name: Extract API Version
-        run: echo "API_VERSION=$(jq -r '.info.version' GameTheoryAPI.yaml)" >> $GITHUB_ENV
-
       - name: Update package.json with API Version
         run: |
-          sed -i "s/\"version\": \".*\"/\"version\": \"$API_VERSION\"/" package.json
+          API_VERSION=$(jq -r '.info.version' GameTheoryAPI.yaml)
+          jq --arg newVersion "$API_VERSION" '.version = $newVersion' package.json > temp.json && mv temp.json package.json
+        working-directory: generated-code
 
       - name: Initialize and Publish Package
         run: |
