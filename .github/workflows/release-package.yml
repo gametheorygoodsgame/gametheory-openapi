@@ -46,6 +46,9 @@ jobs:
           echo "Extracted API_VERSION: $API_VERSION"
         shell: /usr/bin/bash -e {0}
 
+      - name: Show folder
+        run: ls -l
+
       - name: Update package.json with API Version
         run: jq --arg newVersion "$API_VERSION" '.version = $newVersion' package.json > temp.json && mv temp.json generated-code/package.json
         working-directory: generated-code
