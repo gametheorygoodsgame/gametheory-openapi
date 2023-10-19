@@ -20,9 +20,7 @@ jobs:
           registry-url: 'https://npm.pkg.github.com'
 
       - name: Install Dependencies
-        run: |
-          npm install
-          sudo apt-get install yq -y
+        run: npm install yq
 
       - name: Download OpenAPI Generator CLI
         run: |
