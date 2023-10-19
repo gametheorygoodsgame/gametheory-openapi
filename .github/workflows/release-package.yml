@@ -20,7 +20,11 @@ jobs:
           registry-url: 'https://npm.pkg.github.com'
 
       - name: Install Dependencies
+        run: npm install
+
+      - name: Install swagger-express-middleware
         run: npm install swagger-express-middleware
+        working-directory: generated-code
 
       - name: Download OpenAPI Generator CLI
         run: |
