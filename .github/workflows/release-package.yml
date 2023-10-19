@@ -45,7 +45,7 @@ jobs:
       - name: Generate Express Router
         run: |
           cd generated-code
-          npm swagger-express-middleware generate -f GameTheoryAPI.yaml -o generated-code/router.js
+          npm run swagger-express-middleware generate -f GameTheoryAPI.yaml -o generated-code/router.js
 
       - name: Update package.json with API Version
         run: |
