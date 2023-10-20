@@ -52,22 +52,25 @@ jobs:
       - name: Update package.json with API Version
         run: |
           cd generated-code
-
+          
           # Read the API_VERSION from the GameTheoryAPI.yaml file
           API_VERSION=$(yq -r .info.version ../GameTheoryAPI.yaml)
-
+          
           # Read the root package.json
           ROOT_PACKAGE_JSON=$(<../package.json)
-
+          
           # Merge the API_VERSION into the root package.json
           UPDATED_ROOT_PACKAGE_JSON=$(echo "$ROOT_PACKAGE_JSON" | jq --arg api_version "$API_VERSION" '.version = $api_version')
-
+          
           # Read the target package.json
           TARGET_PACKAGE_JSON=$(<package.json)
-
+          
           # Merge the updated root package.json into the target package.json, preserving existing data
           NEW_PACKAGE_JSON=$(jq --argjson updated "$UPDATED_ROOT_PACKAGE_JSON" '. * $updated' <<< "$TARGET_PACKAGE_JSON")
-
+          
+          # Remove the "private" field
+          NEW_PACKAGE_JSON=$(jq 'del(.private)' <<< "$NEW_PACKAGE_JSON")
+          
           # Save the updated package.json to the target package.json file
           echo "$NEW_PACKAGE_JSON" > package.json
           cat package.json
