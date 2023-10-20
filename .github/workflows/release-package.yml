@@ -66,7 +66,7 @@ jobs:
           TARGET_PACKAGE_JSON=$(<package.json)
 
           # Merge the updated root package.json into the target package.json, preserving existing data
-          NEW_PACKAGE_JSON=$(echo "$TARGET_PACKAGE_JSON" | jq --slurpfile root <(echo "$UPDATED_ROOT_PACKAGE_JSON") '.[0] + $root')
+          NEW_PACKAGE_JSON=$(jq --argjson updated "$UPDATED_ROOT_PACKAGE_JSON" '. * $updated' <<< "$TARGET_PACKAGE_JSON")
 
           # Save the updated package.json to the target package.json file
           echo "$NEW_PACKAGE_JSON" > package.json
