@@ -8,7 +8,7 @@ info:
   license:
     name: Apache 2.0
     url: http://www.apache.org/licenses/LICENSE-2.0.html
-  version: 0.0.9
+  version: 0.0.1
 externalDocs:
   description: Find out more about spec
   url: ''
@@ -307,7 +307,7 @@ paths:
         - in: path
           name: playerId
           description: ''
-          schema: &ref_2
+          schema: &ref_0
             type: string
           required: true
       responses:
@@ -330,12 +330,12 @@ paths:
         - in: path
           name: gameId
           description: ''
-          schema: *ref_2
+          schema: *ref_0
           required: true
         - in: path
           name: playerId
           description: ''
-          schema: *ref_2
+          schema: *ref_0
           required: true
         - in: path
           name: numTurn
@@ -398,426 +398,24 @@ paths:
               schema:
                 $ref: '#/components/schemas/move'
           description: OK
-    delete:
-      summary: Deletes a Move of the Player in the given Turn.
-      description: ''
-      operationId: deleteMoveInTurnNumberForPlayerIdInGameId
-      tags:
-        - Game -> Player -> Move
-      parameters:
-        - in: path
-          name: gameId
-          description: ''
-          schema: *ref_2
-          required: true
-        - in: path
-          name: playerId
-          description: ''
-          schema: *ref_2
-          required: true
-        - in: path
-          name: numTurn
-          description: ''
-          schema:
-            type: integer
-            exclusiveMinimum: false
-            minimum: 0
-            default: 0
-          required: true
-      responses:
-        '204':
-          description: Deleted
-    put:
-      summary: Changes the Move a Player made in the given Turn.
-      description: ''
-      operationId: updateMoveInTurnNumberForPlayerIdInGameId
-      tags:
-        - Game -> Player -> Move
-      parameters:
-        - in: path
-          name: gameId
-          description: ''
-          schema: *ref_2
-          required: true
-        - in: path
-          name: playerId
-          description: ''
-          schema: *ref_2
-          required: true
-        - in: path
-          name: numTurn
-          description: ''
-          schema:
-            type: integer
-            exclusiveMinimum: false
-            minimum: 0
-            default: 0
-          required: true
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/move'
-      responses:
-        '200':
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/move'
-          description: OK
-  /players:
-    get:
-      summary: Get all Players.
-      description: ''
-      operationId: getAllPlayers
-      tags:
-        - Player
-      responses:
-        '200':
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/player'
-          description: OK
-    post:
-      summary: Create a Player.
-      description: ''
-      operationId: createPlayer
-      tags:
-        - Player
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/player'
-      responses:
-        '200':
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/player'
-          description: OK
-  /players/{playerId}:
-    delete:
-      summary: Delete a Player by Id.
-      description: ''
-      operationId: deletePlayerById
-      tags:
-        - Player
-      parameters:
-        - in: path
-          name: playerId
-          description: ''
-          schema:
-            type: string
-            minLength: 36
-            maxLength: 36
-            pattern: >-
-              ^[0-9a-fA-F]{8}\b-[0-9a-fA-F]{4}\b-[0-9a-fA-F]{4}\b-[0-9a-fA-F]{4}\b-[0-9a-fA-F]{12}$
-            format: uuid
-          required: true
-      responses:
-        '204':
-          description: Deleted
-    put:
-      summary: Change a Player.
-      description: ''
-      operationId: updatePlayerById
-      tags:
-        - Player
-      parameters:
-        - in: path
-          name: playerId
-          description: ''
-          schema:
-            type: string
-            minLength: 36
-            maxLength: 36
-            pattern: >-
-              ^[0-9a-fA-F]{8}\b-[0-9a-fA-F]{4}\b-[0-9a-fA-F]{4}\b-[0-9a-fA-F]{4}\b-[0-9a-fA-F]{12}$
-            format: uuid
-          required: true
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/player'
-      responses:
-        '200':
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/player'
-          description: OK
-  /persons/:
-    get:
-      summary: Return all Persons.
-      description: ''
-      operationId: getAllPersons
-      tags:
-        - Person
-      responses:
-        '200':
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/person'
-          description: OK
-    post:
-      summary: Create a Person.
-      description: ''
-      operationId: createPerson
-      tags:
-        - Person
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/person'
-      responses:
-        '200':
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/person'
-          description: OK
-  /persons/{personId}:
-    delete:
-      summary: Delete a Person.
-      description: ''
-      operationId: deletePersonById
-      tags: &ref_5
-        - Person
-      parameters:
-        - in: path
-          name: personId
-          description: ''
-          schema: *ref_2
-          required: true
-      responses:
-        '204':
-          description: Deleted
-    put:
-      summary: Change a Person
-      description: ''
-      operationId: updatePersonById
-      tags: *ref_5
-      parameters:
-        - in: path
-          name: personId
-          description: ''
-          schema:
-            type: string
-            minLength: 36
-            maxLength: 36
-            pattern: >-
-              ^[0-9a-fA-F]{8}\b-[0-9a-fA-F]{4}\b-[0-9a-fA-F]{4}\b-[0-9a-fA-F]{4}\b-[0-9a-fA-F]{12}$
-            format: uuid
-          required: true
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/person'
-      responses:
-        '200':
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/person'
-          description: OK
-  /games/{gameId}/maxTurn:
-    get:
-      summary: Get the amount of Turns to be played
-      description: ''
-      operationId: getMaxTurnCountByGameId
-      tags:
-        - Game
-      parameters:
-        - in: path
-          name: gameId
-          description: ''
-          schema: *ref_2
-          required: true
-      responses:
-        '200':
-          content:
-            application/json:
-              schema:
-                type: integer
-                exclusiveMinimum: false
-                minimum: 1
-                default: 1
-          description: OK
-    put:
-      summary: Change the amount of Turns to be played.
-      description: ''
-      operationId: updateMaxTurnCountByGameId
-      tags:
-        - Game
-      parameters:
-        - in: path
-          name: gameId
-          description: ''
-          schema:
-            type: string
-            minLength: 36
-            maxLength: 36
-            pattern: >-
-              ^[0-9a-fA-F]{8}\b-[0-9a-fA-F]{4}\b-[0-9a-fA-F]{4}\b-[0-9a-fA-F]{4}\b-[0-9a-fA-F]{12}$
-            format: uuid
-          required: true
-      requestBody:
-        content:
-          application/json:
-            schema:
-              type: integer
-              minimum: 1
-              default: 1
-      responses:
-        '200':
-          content:
-            application/json:
-              schema:
-                type: integer
-                minimum: 1
-                default: 1
-          description: OK
-  /games/{gameId}/cardHandValue:
-    get:
-      summary: Return the Value a Red Card has on a Player's Hand.
-      description: ''
-      operationId: getCardHandValueByGameId
-      tags: &ref_7
-        - Game
-      parameters:
-        - in: path
-          name: gameId
-          description: ''
-          schema: *ref_2
-          required: true
-      responses:
-        '200':
-          content: &ref_8
-            application/json:
-              schema:
-                type: integer
-                minimum: 1
-                default: 1
-          description: OK
-    put:
-      summary: Change the Value a Red Card has on a Player's Hand.
-      description: ''
-      operationId: updateCardHandValueByGameId
-      tags: *ref_7
-      parameters:
-        - in: path
-          name: gameId
-          description: ''
-          schema: *ref_2
-          required: true
-      requestBody: &ref_9
-        content:
-          application/json:
-            schema:
-              type: integer
-              minimum: 1
-              default: 1
-      responses:
-        '200':
-          content: &ref_10
-            application/json:
-              schema:
-                type: integer
-                minimum: 1
-                default: 1
-          description: OK
-  /games/{gameId}/cardPotValue/:
-    get:
-      summary: Return the Value a Red Card has in the Public Goods' Pot.
-      description: ''
-      operationId: getCardPotValueByGameId
-      tags: *ref_7
-      parameters:
-        - in: path
-          name: gameId
-          description: ''
-          schema: *ref_2
-          required: true
-      responses:
-        '200':
-          content: *ref_8
-          description: OK
-    put:
-      summary: Change the Value a Red Card has in the Public Goods' Pot.
-      description: ''
-      operationId: updateCardPotValueByGameId
-      tags: *ref_7
-      parameters:
-        - in: path
-          name: gameId
-          description: ''
-          schema:
-            type: string
-            minLength: 36
-            maxLength: 36
-            pattern: >-
-              ^[0-9a-fA-F]{8}\b-[0-9a-fA-F]{4}\b-[0-9a-fA-F]{4}\b-[0-9a-fA-F]{4}\b-[0-9a-fA-F]{12}$
-            format: uuid
-          required: true
-      requestBody: *ref_9
-      responses:
-        '200':
-          content: *ref_10
-          description: OK
-  /games/{gameId}/potCards:
-    get:
-      summary: Get the number of Red Cards in the Public Goods' Pot.
-      description: ''
-      operationId: getPotCardsByGameId
-      tags:
-        - Game
-      parameters:
-        - in: path
-          name: gameId
-          description: ''
-          schema:
-            type: string
-            minLength: 36
-            maxLength: 36
-            pattern: >-
-              ^[0-9a-fA-F]{8}\b-[0-9a-fA-F]{4}\b-[0-9a-fA-F]{4}\b-[0-9a-fA-F]{4}\b-[0-9a-fA-F]{12}$
-            format: uuid
-          required: true
-      responses:
-        '200':
-          content:
-            application/json:
-              schema:
-                type: integer
-                minimum: 0
-                default: 0
-          description: OK
 components:
   schemas:
     game:
       type: object
       properties:
-        gameId:
+        is:
           type: string
           minLength: 36
           maxLength: 36
           pattern: >-
             ^[0-9a-fA-F]{8}\b-[0-9a-fA-F]{4}\b-[0-9a-fA-F]{4}\b-[0-9a-fA-F]{4}\b-[0-9a-fA-F]{12}$
           format: uuid
-        maxTurn:
+        maxTurns:
           type: integer
           description: Number of turns.
           default: 5
           minimum: 1
-        currTurn:
+        currentTurn:
           type: integer
           description: Current Turn.
           minimum: 0
@@ -844,127 +442,64 @@ components:
             Owner.
           minimum: 1
           default: 2
-        owner:
-          $ref: '#/components/schemas/player'
         potCards:
-          type: integer
+          type: array
+          items:
+            type: integer
           description: Number of Red Cards in the Public Goods' Pot.
-          default: 0
-          minimum: 0
-        opened:
-          type: string
-          format: date-time
-        closed:
-          type: string
-          format: date-time
       description: Game
       required:
-        - gameId
-        - maxTurn
-        - currTurn
+        - is
+        - maxTurns
+        - currentTurn
         - players
         - cardHandValue
         - cardPotValue
-        - owner
         - potCards
-        - opened
-        - closed
     player:
       type: object
       properties:
+        id:
+          type: string
+          minLength: 36
+          maxLength: 36
+          pattern: >-
+            ^[0-9a-fA-F]{8}\b-[0-9a-fA-F]{4}\b-[0-9a-fA-F]{4}\b-[0-9a-fA-F]{4}\b-[0-9a-fA-F]{12}$
+          format: uuid
+        name:
+          type: string
+          minLength: 2
+          maxLength: 1024
+          pattern: \b([A-ZÀ-ÿ][-a-z. ']+[ ]*)+
+        moves:
+          type: array
+          items:
+            $ref: '#/components/schemas/move'
         score:
-          type: number
-          description: The Player's score.
-          default: 0
-          minimum: 0
-        personId:
-          type: string
-          minLength: 36
-          maxLength: 36
-          pattern: >-
-            ^[0-9a-fA-F]{8}\b-[0-9a-fA-F]{4}\b-[0-9a-fA-F]{4}\b-[0-9a-fA-F]{4}\b-[0-9a-fA-F]{12}$
-          format: uuid
-        playerId:
-          type: string
-          minLength: 36
-          maxLength: 36
-          pattern: >-
-            ^[0-9a-fA-F]{8}\b-[0-9a-fA-F]{4}\b-[0-9a-fA-F]{4}\b-[0-9a-fA-F]{4}\b-[0-9a-fA-F]{12}$
-          format: uuid
+          type: integer
       description: PlayerState
       required:
+        - id
+        - name
+        - moves
         - score
-        - personId
-        - playerId
-    person:
-      type: object
-      properties:
-        personId:
-          type: string
-          description: UUIDv4
-          minLength: 36
-          maxLength: 36
-          pattern: >-
-            ^[0-9a-fA-F]{8}\b-[0-9a-fA-F]{4}\b-[0-9a-fA-F]{4}\b-[0-9a-fA-F]{4}\b-[0-9a-fA-F]{12}$
-          format: uuid
-        firstName:
-          type: string
-          pattern: \b([A-ZÀ-ÿ][-a-z. ']+[ ]*)+
-          minLength: 2
-          maxLength: 1024
-        lastName:
-          type: string
-          pattern: \b([A-ZÀ-ÿ][-a-z. ']+[ ]*)+
-          minLength: 2
-          maxLength: 1024
-        salutation:
-          type: string
-          enum:
-            - Mr.
-            - Mrs.
-            - Mx.
-          default: Mr.
-        title:
-          type: string
-        course:
-          type: string
-      description: A Person-Object.
-      required:
-        - personId
-        - firstName
-        - lastName
-        - salutation
     move:
       type: object
       properties:
-        moveId:
-          type: string
-          description: UUIDv4
-          minLength: 36
-          maxLength: 36
-          pattern: >-
-            ^[0-9a-fA-F]{8}\b-[0-9a-fA-F]{4}\b-[0-9a-fA-F]{4}\b-[0-9a-fA-F]{4}\b-[0-9a-fA-F]{12}$
-          format: uuid
-        playerId:
-          type: string
-          description: UUIDv4
-          minLength: 36
-          maxLength: 36
-          pattern: >-
-            ^[0-9a-fA-F]{8}\b-[0-9a-fA-F]{4}\b-[0-9a-fA-F]{4}\b-[0-9a-fA-F]{4}\b-[0-9a-fA-F]{12}$
-          format: uuid
         numTurn:
           type: integer
           minimum: 0
           default: 0
-        numCards:
+        numRedCards:
           type: integer
           default: 0
           minimum: 0
           maximum: 2
+          enum:
+            - 0
+            - 1
+            - 2
       required:
-        - playerId
         - numTurn
-        - numCards
-        - moveId
+        - numRedCards
   securitySchemes: {}
