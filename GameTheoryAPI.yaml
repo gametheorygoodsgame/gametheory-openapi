@@ -8,7 +8,7 @@ info:
   license:
     name: Apache 2.0
     url: http://www.apache.org/licenses/LICENSE-2.0.html
-  version: 0.0.12
+  version: 0.0.13
 externalDocs:
   description: Find out more about spec
   url: ''
@@ -403,14 +403,14 @@ components:
     game:
       type: object
       properties:
-        is:
+        id:
           type: string
           minLength: 36
           maxLength: 36
           pattern: >-
             ^[0-9a-fA-F]{8}\b-[0-9a-fA-F]{4}\b-[0-9a-fA-F]{4}\b-[0-9a-fA-F]{4}\b-[0-9a-fA-F]{12}$
           format: uuid
-        maxTurns:
+        numTurns:
           type: integer
           description: Number of turns.
           default: 5
@@ -423,25 +423,20 @@ components:
         players:
           type: array
           items:
-            type: string
-            minLength: 36
-            maxLength: 36
-            pattern: >-
-              ^[0-9a-fA-F]{8}\b-[0-9a-fA-F]{4}\b-[0-9a-fA-F]{4}\b-[0-9a-fA-F]{4}\b-[0-9a-fA-F]{12}$
-            format: uuid
+            $ref: '#/components/schemas/player'
           description: List of Players
         cardHandValue:
-          type: integer
+          type: array
+          items:
+            type: integer
           description: Value of a Red Card on the players Hand.
-          minimum: 1
-          default: 1
         cardPotValue:
-          type: integer
+          type: array
+          items:
+            type: integer
           description: >-
             Value of a Red Card in the Public Goods' Pot. Determined by the Game
             Owner.
-          minimum: 1
-          default: 2
         potCards:
           type: array
           items:
@@ -449,8 +444,8 @@ components:
           description: Number of Red Cards in the Public Goods' Pot.
       description: Game
       required:
-        - is
-        - maxTurns
+        - id
+        - numTurns
         - currentTurn
         - players
         - cardHandValue
