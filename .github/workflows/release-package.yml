@@ -47,7 +47,7 @@ jobs:
 
       - name: Generate Api and Models
         run: |
-          java -jar openapi-generator-cli/openapi-generator-cli.jar generate -i GameTheoryAPI.yaml -g typescript-fetch -o generated-code
+          java -jar openapi-generator-cli/openapi-generator-cli.jar generate -i GameTheoryAPI.yaml -g typescript-axios -o generated-code
 
       - name: Update package.json with API Version
         run: |
