@@ -15,7 +15,6 @@ externalDocs:
 servers:
   - url: http://localhst:30167
     description: ''
-    varibles: {}
 tags:
   - name: Game
     description: The Game or GameState Object.
