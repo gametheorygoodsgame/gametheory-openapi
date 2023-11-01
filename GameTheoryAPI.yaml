@@ -8,12 +8,12 @@ info:
   license:
     name: Apache 2.0
     url: http://www.apache.org/licenses/LICENSE-2.0.html
-  version: 0.0.14
+  version: 0.0.15
 externalDocs:
   description: Find out more about spec
   url: ''
 servers:
-  - url: http://localhost:30167
+  - url: http://localhst:30167
     description: ''
 tags:
   - name: Game
@@ -319,6 +319,45 @@ paths:
                 items:
                   $ref: '#/components/schemas/move'
           description: OK
+    post:
+      summary: Creates a Move for the Player in the Game
+      description: ''
+      operationId: createMoveForPlayerInGame
+      tags: []
+      parameters:
+        - in: path
+          name: gameId
+          description: ''
+          schema:
+            type: string
+            minLength: 36
+            maxLength: 36
+            pattern: >-
+              ^[0-9a-fA-F]{8}\b-[0-9a-fA-F]{4}\b-[0-9a-fA-F]{4}\b-[0-9a-fA-F]{4}\b-[0-9a-fA-F]{12}$
+            format: uuid
+          required: true
+        - in: path
+          name: playerId
+          description: ''
+          schema:
+            type: string
+            minLength: 36
+            maxLength: 36
+            pattern: >-
+              ^[0-9a-fA-F]{8}\b-[0-9a-fA-F]{4}\b-[0-9a-fA-F]{4}\b-[0-9a-fA-F]{4}\b-[0-9a-fA-F]{12}$
+            format: uuid
+          required: true
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/move'
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/move'
   /games/{gameId}/players/{playerId}/moves/turns/{numTurn}:
     get:
       summary: Returns the Move a Player made in a Turn
