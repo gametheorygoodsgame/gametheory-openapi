@@ -8,7 +8,7 @@ info:
   license:
     name: Apache 2.0
     url: http://www.apache.org/licenses/LICENSE-2.0.html
-  version: 0.0.15
+  version: 0.0.16
 externalDocs:
   description: Find out more about spec
   url: ''
@@ -323,7 +323,8 @@ paths:
       summary: Creates a Move for the Player in the Game
       description: ''
       operationId: createMoveForPlayerInGame
-      tags: []
+      tags:
+        - Game -> Player -> Move
       parameters:
         - in: path
           name: gameId
