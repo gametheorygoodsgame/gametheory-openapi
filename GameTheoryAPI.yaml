@@ -318,6 +318,8 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/move'
+                  description: Move
+                description: Moves
           description: OK
     post:
       summary: Creates a Move for the Player in the Game
@@ -352,12 +354,14 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/move'
+              description: Move
       responses:
         '201':
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/move'
+                description: Move
   /games/{gameId}/players/{playerId}/moves/turns/{numTurn}:
     get:
       summary: Returns the Move a Player made in a Turn
