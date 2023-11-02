@@ -8,7 +8,7 @@ info:
   license:
     name: Apache 2.0
     url: http://www.apache.org/licenses/LICENSE-2.0.html
-  version: 0.0.17
+  version: 0.0.18
 externalDocs:
   description: Find out more about spec
   url: ''
@@ -91,7 +91,7 @@ paths:
       responses:
         '204':
           description: Deleted.
-    put:
+    patch:
       summary: Change a Game.
       description: ''
       operationId: updateGameById
