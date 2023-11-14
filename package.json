@@ -1,5 +1,5 @@
 {
-  "name": "@eikermannlfh/gametheoryapi",
+  "name": "@gametheorygoodsgame/gametheory-openapi",
   "version": "0.0.1",
   "publishConfig": {
     "@eikermannlfh": "https://npm.pkg.github.com"
@@ -11,12 +11,12 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/EikermannLFH/GameTheoryAPI.git"
+    "url": "git+https://github.com/gametheorygoodsgame/gametheory-openapi.git"
   },
   "author": "Jens Eikermann",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/EikermannLFH/GameTheoryAPI/issues"
+    "url": "https://github.com/gametheorygoodsgame/gametheory-openapi/issues"
   },
-  "homepage": "https://github.com/EikermannLFH/GameTheoryAPI#readme"
+  "homepage": "https://github.com/gametheorygoodsgame/gametheory-openapi#readme"
 }
