@@ -44,6 +44,7 @@ Schemata
 Ein Spiel hat folgende Eigenschaften:
 
 -   id: Die eindeutige ID des Spiels.
+-   name: Der Titel des Spiels zur Anzeige ggü dem Dozenten.
 -   numTurns: Die Anzahl der Spielzüge im Spiel.
 -   currentTurn: Der aktuelle Spielzug.
 -   players: Eine Liste der Spieler im Spiel.
