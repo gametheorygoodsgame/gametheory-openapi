@@ -8,7 +8,7 @@ info:
   license:
     name: Apache 2.0
     url: http://www.apache.org/licenses/LICENSE-2.0.html
-  version: 0.0.21
+  version: 0.0.23
 externalDocs:
   description: Find out more about spec
   url: ''
@@ -486,6 +486,10 @@ components:
           items:
             type: integer
           description: Number of Red Cards in the Public Goods' Pot.
+        isFinished:
+          type: boolean
+          default: false
+          description: Check if game is finished.
       description: Game
       required:
         - id
