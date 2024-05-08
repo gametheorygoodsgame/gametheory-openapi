@@ -25,7 +25,7 @@ jobs:
       - name: Download OpenAPI Generator CLI
         run: |
           mkdir -p openapi-generator-cli
-          curl -L -o openapi-generator-cli/openapi-generator-cli.jar https://repo1.maven.org/maven2/org/openapitools/openapi-generator-cli/6.4.0/openapi-generator-cli-6.4.0.jar
+          curl -L -o openapi-generator-cli/openapi-generator-cli.jar https://repo1.maven.org/maven2/org/openapitools/openapi-generator-cli/7.5.0/openapi-generator-cli-7.5.0.jar
 
       - name: Show Available Node and NPM Versions
         run: |
