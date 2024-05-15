@@ -8,12 +8,12 @@ info:
   license:
     name: Apache 2.0
     url: http://www.apache.org/licenses/LICENSE-2.0.html
-  version: 0.0.26
+  version: 0.0.27
 externalDocs:
   description: Find out more about spec
   url: ''
 servers:
-  - url: http://gmt.atlasproject.de:4000/api/
+  - url: https://gmt.atlasproject.de/api/games/
     description: ''
 tags:
   - name: Game
