@@ -8,13 +8,15 @@ info:
   license:
     name: Apache 2.0
     url: http://www.apache.org/licenses/LICENSE-2.0.html
-  version: 0.0.33
+  version: 0.0.34
 externalDocs:
   description: Find out more about spec
   url: ''
 servers:
   - url: https://gmt.atlasproject.de/api/
-    description: ''
+    description: Production server (uses live data)
+  - url: http://localhost:30167
+    description: Sandbox server (uses test data)
 tags:
   - name: Game
     description: The Game or GameState Object.
