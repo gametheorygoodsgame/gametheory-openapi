@@ -8,7 +8,7 @@ info:
   license:
     name: Apache 2.0
     url: http://www.apache.org/licenses/LICENSE-2.0.html
-  version: 0.0.38
+  version: 0.0.39
 externalDocs:
   description: Find out more about spec
   url: ''
@@ -452,7 +452,7 @@ paths:
           in: path
           required: true
           schema:
-            type: string
+            type: player
             format: uuid
       responses:
         '200':
@@ -517,8 +517,9 @@ components:
           default: false
           description: Check if game is finished.
         winner:
-          type: string
-          description: The winner of a game who is choosen at random.
+          $ref: '#/components/schemas/player'
+          description: The winner of a game who is chosen at random.
+
       description: Game
       required:
         - id
