@@ -8,7 +8,7 @@ info:
   license:
     name: Apache 2.0
     url: http://www.apache.org/licenses/LICENSE-2.0.html
-  version: 0.0.36
+  version: 0.0.37
 externalDocs:
   description: Find out more about spec
   url: ''
@@ -460,7 +460,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/getWinner'
+                $ref: '#/components/schemas/player'
         '404':
           description: Game not found or no players
         '500':
@@ -574,6 +574,4 @@ components:
       required:
         - numTurn
         - numRedCards
-    getWinner:
-      $ref: '#/components/schemas/player'
   securitySchemes: {}
