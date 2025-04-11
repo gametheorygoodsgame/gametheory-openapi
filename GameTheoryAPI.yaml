@@ -8,7 +8,7 @@ info:
   license:
     name: Apache 2.0
     url: http://www.apache.org/licenses/LICENSE-2.0.html
-  version: 0.0.34
+  version: 0.0.35
 externalDocs:
   description: Find out more about spec
   url: ''
@@ -441,6 +441,30 @@ paths:
               schema:
                 $ref: '#/components/schemas/move'
           description: OK
+  /games/{gameId}/winner:
+    get:
+      summary: Get the winner of the game.
+      operationId: getWinner
+      tags:
+        - Game -> Player
+      parameters:
+        - name: gameId
+          in: path
+          required: true
+          schema:
+            type: Player
+            format: uuid
+      responses:
+        '200':
+          description: A player from the game who won.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/getWinner'
+        '404':
+          description: Game not found or no players
+        '500':
+          description: Internal server error
 components:
   schemas:
     game:
@@ -492,6 +516,9 @@ components:
           type: boolean
           default: false
           description: Check if game is finished.
+        winner:
+          type: string
+          description: The winner of a game who is choosen at random.
       description: Game
       required:
         - id
@@ -547,4 +574,6 @@ components:
       required:
         - numTurn
         - numRedCards
+    getWinner:
+      $ref: '#/components/schemas/player'
   securitySchemes: {}
