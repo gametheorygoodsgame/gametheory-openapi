@@ -8,7 +8,7 @@ info:
   license:
     name: Apache 2.0
     url: http://www.apache.org/licenses/LICENSE-2.0.html
-  version: 0.0.39
+  version: 0.0.40
 externalDocs:
   description: Find out more about spec
   url: ''
@@ -446,13 +446,13 @@ paths:
       summary: Get the winner of the game.
       operationId: getWinner
       tags:
-        - Game 
+        - Game
       parameters:
         - name: gameId
           in: path
           required: true
           schema:
-            type: player
+            type: string
             format: uuid
       responses:
         '200':
