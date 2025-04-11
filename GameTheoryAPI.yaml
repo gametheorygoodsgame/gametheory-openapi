@@ -13,8 +13,8 @@ externalDocs:
   description: Find out more about spec
   url: ''
 servers:
-  - url: https://gmt.atlasproject.de/api/
-    description: Production server (uses live data)
+  #- url: https://gmt.atlasproject.de/api/
+    #description: Production server (uses live data)
   - url: http://localhost:30167
     description: Sandbox server (uses test data)
 tags:
