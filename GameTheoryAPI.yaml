@@ -8,7 +8,7 @@ info:
   license:
     name: Apache 2.0
     url: http://www.apache.org/licenses/LICENSE-2.0.html
-  version: 0.0.41
+  version: 0.0.42
 externalDocs:
   description: Find out more about spec
   url: ''
@@ -550,12 +550,15 @@ components:
             $ref: '#/components/schemas/move'
         score:
           type: integer
+        inactiveSinceTurn:
+          type: integer
       description: PlayerState
       required:
         - id
         - name
         - moves
         - score
+        - inactiveSinceTurn
     move:
       type: object
       properties:
